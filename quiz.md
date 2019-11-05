@@ -1,8 +1,6 @@
-# 1 Data Exploration Section
+# 1 Data Exploration
 
-## Data Exploration Tutorial
-
-In this quiz, we will be using turnover of employee data (`turnover`). The data is available in your R environment. Before you perform classification, you need to explore the data to get information about the data. Glimpse the data from `turnover` data! You can choose `str()` or `glimpse()`.
+In this quiz, we will be using turnover of employee data (`turnover`). The data is stored as csv file in this repository as `turnover_balance.csv` file. Before you build your classification model, you need to perform an exploratory analysis to be able to understand the data. Glimpse the structure of our `turnover` data! You can choose either `str()` or `glimpse()` function.
 
 ```
 # your code here
@@ -22,7 +20,7 @@ Turnover data is consist of 10 variables and 14.999 row. Turnover dataset is a h
   - `sales`: name of department or division
   - `salary`: income level, divided into low, medium and high
   
-In this quiz, we will try to predict employee that given a chance to resign or not based on the `left` column as our target variable. Let's take a look mean of `average_monthly_hours` of each division and history of employee resign.
+In this quiz, we will try to predict wether or not the employee has resignation tendency using `left` column as our target variable. Let's take a look mean of `average_monthly_hours` of each division and history of employee resign.
 
 ```
 # your code here
@@ -32,15 +30,13 @@ In this quiz, we will try to predict employee that given a chance to resign or n
 ## Data Exploration Quiz
 
 
-1. Based on aggregation data below, what division that has high average of monthly hours and high potential to resign?
+1. Based on aggregation data you have created, which division has the highest average of monthly hours with high probability of resigning?
   - [ ] IT division
   - [ ] Technical division
   - [ ] Sales division
   - [ ] Accounting division
 
-# 2 Data Pre-Process Section
-
-## Data Pre-Process Tutorial
+# 2 Data Pre-Processing
 
 We will move to pre-process step before build classification model using `turnover` dataset. Let's take a look the proportion of our class target in `left` column before building the model. 
 
@@ -69,16 +65,13 @@ Let's take a look distribution of proportion in `train` and `test` data, and try
 
 ```
 
-1. Based on proportion of `train` and `test` above, is the distribution of each class is a balance? Why the distribution of each class must balance?
+2. Based on proportion of `train` and `test` above, is the distribution of each class is a balance? Why the distribution of each class must balance?
   - [ ] No, it is not.
   - [ ] Yes, it is. Distribution of each class does not need to be balance. 
   - [ ] No, it is not. Distribution of each class needs to be balanced to make the model not miss classify each class. 
   - [ ] Yes, it is balance. Distribution of each class needs to be balanced to make model learn both in each class as well. 
 
-
-# 3.1 Model Fitting Logistic Regression Section
-
-## Model Fitting Tutorial
+# 3.1 Logistic Regression Model Fitting
 
 We have a `train` and `test` dataset. Let's try to model the `left` variable with all of the predictor variables using the logistic regression model. Please store your model in `model_logistic`. Remember, we have not using `turnover` dataset any longer, but using `train` dataset.
 
@@ -94,19 +87,20 @@ Based on the `model_logictic` you have made above, make the summary of the model
 
 ```
 
-## Model Fitting Quiz
+## Logistic Regression Quiz
 
-On the summary model above, try to interpret one of predictor variable. Let say you pick the `Work_accident` variable.
+Based on the model summary above, try to answer the following question.
 
 ```
 # your code here
 ```
 
-1. What can we interpret based on the output above?
+3. What can we interpret based on the output above?
   - [ ] Probability if an employee has a work accident being not resigned is 0.23.
   - [ ] Odds ratio employee has work accident being not resigned is about 0.23 more likely than an employee not has a work accident.
   - [ ] Odds ratio employee has work accident being resigned is about 1.44 less likely than an employee not has a work accident.
 
+# 3.2 K-Nearest Neighbor Model Fitting
 
 # 3.2 Model Fitting K-Nearest Neighbor Section
 
@@ -126,7 +120,7 @@ After we have done in additional pre-processing step, we move to build k-NN mode
 
 ```
 
-## Model Fitting Quiz
+## K-Nearest Neighbor Quiz
 
 Using k value we have calculate in the section before, try to modeling the `train_knn` data to make knn model. Store the model in `model_knn`. 
 
@@ -135,9 +129,9 @@ Using k value we have calculate in the section before, try to modeling the `trai
 
 ```
 
-Based on the k value we have acquired, try to answer the following question.
+The method to acquire K value, however, does not guarantee you to acquire the best result. There are some other way to try out different K values.
 
-1. What method we can use to choose an appropriate k?
+4. What method we can use to choose an appropriate k?
   - [ ] square root by number of row 
   - [ ] number of row
   - [ ] use k = 1
@@ -147,17 +141,15 @@ If you have succeeded in making the knn model, try to answer this question.
 
 ![](model.png)
 
-1. Fill the missing code here based on the picture above, and choose the right code for build knn model!
+5. Fill the missing code here based on the picture above, and choose the right code for build knn model!
   - [ ] model_knn <- knn(train = train_knn, test = test_knn[,-8], cl = train_knn[,-8], k = 75)
   - [ ] model_knn <- knn(train = train_knn[,8], test = test_knn[,-8], cl = train_knn[,8], k = 75)
   - [ ] model_knn <- knn(train = train_knn[,-8], test = test_knn[,-8], cl = train_knn[,8], k = 75)
   - [ ] model_knn <- knn(train = train_knn[,-8], test = test_knn[,-8], cl = train_knn[,-8], k = 75)
 
-# 4 Prediction Section
+# 4 Prediction
 
-## Prediction Tutorial
-
-Based on the logistic regression model that we've made and store it as `model_logistic`, we want to predict `test` data using those model. In prediction step of logistic regression, we can get log of odds of predict data or probability of predict data. In this section, try to predict `test` data using `model_logistic` return the probability value and store it in `pred_value` object.
+Now let's get back to our `model_logistic`. In this section, try to predict `test` data using `model_logistic` return the probability value and store it under `pred_value` object.
 
 ```
 # your code here
@@ -173,17 +165,15 @@ Using `pred_value`, we have got the probability of employee getting resign or no
 
 ## Prediction Quiz
 
-Based on the prediction value above, try to answer this question.
+Based on the prediction value above, try to answer the following question.
 
-6. How much our model can predict class 0 and class 1 in logistic regression model?
+6. How many prediction does our model generate for each class?
   - [ ] class 0 = 714, class 1 = 715
   - [ ] class 0 = 524, class 1 = 905
   - [ ] class 0 = 592, class 1 = 837
   
 
-# 5 Model Evaluation Section
-
-## Model Evaluation Tutorial
+# 5 Model Evaluation
 
 We have learn to make predictive model and try to predict value using `test` in logistic regression model and `test_knn` in k-nearest neighbor model. The last step we must do is checking our model performance to predict the unseen data. In this step, try to make the confusion matrix of model performance in the logistic regression model based on `test` data and `pred_value`. Use the positive value is "1".
 
@@ -192,7 +182,7 @@ We have learn to make predictive model and try to predict value using `test` in 
 
 ```
 
-Make the same confusion matrix but using `model_knn` using `test_knn` data. Use the positive value is "1". 
+Make the same confusion matrix but using `model_knn`.
 
 ```
 # your code here
