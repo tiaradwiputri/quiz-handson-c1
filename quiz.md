@@ -7,7 +7,7 @@ In this quiz, we will be using turnover of employee data (`turnover`). The data 
 
 ```
 
-As you might see, this data consist of 10 variables and 14.999 rows. This dataset is a human resource data that shows historical data of employee characteristics for the one that has resigned and the one that have not. Pay attention to the dataset glossary below:
+Turnover data is consist of 10 variables and 14.999 row. Turnover dataset is a human resource data that shows historical data of employee characteristics that are resigned or not. This is more information about variable in the dataset:
 
   - `satisfaction_level`: the level of employee satisfaction working in a company
   - `last_evaluation`: employee satisfaction level at the last evaluation
@@ -37,7 +37,7 @@ In this quiz, we will try to predict wether or not the employee has resignation 
 
 # 2 Data Pre-Processing
 
-After we are done with data exploratory, we will go ahead and perform pre-processing steps before building the classification model. Before we build the model, let's take a look the proportion of our target variable in `left` column. 
+We will move to pre-process step before build classification model using `turnover` dataset. Let's take a look the proportion of our class target in `left` column before building the model. 
 
 ```
 # your code here
@@ -46,7 +46,8 @@ After we are done with data exploratory, we will go ahead and perform pre-proces
 
 Our target variable has a balance proportion between both classes. So our next step is to split the dataset into a train and test set in order to perform a model validation. Split `turnover` dataset into a train data using 80% of the data and store it under `train` object. Use the rest 20% of the data as the test set and store it under `test` object. Use `set.seed()` with seed 100 and `sample()` to randomize `turnover` dataset before. 
 
-> **Notes:** Make sure your R version is 3.6, if your R version not 3.6, use `RNGkind(sample.kind="Rounding")`
+> **Notes:** Make sure your R version is 3.6 
+
 ```
 # RNGkind(sample.kind="Rounding")
 # set.seed(100)
@@ -54,27 +55,31 @@ Our target variable has a balance proportion between both classes. So our next s
 
 ```
 
-## Data Pre-Processing Quiz
+## Data Pre-Process Quiz
 
-After splitting dataset, so let's take a look distribution of proportion in `train` and `test` data, and try to answer the question below.  
+Let's take a look distribution of proportion in `train` and `test` data, and try to answer the question below. Please rounding the proportion using two decimal number.
 
-2. Based on proportion of `train` and `test`, is the distribution of each class can be considered as balance? Why do we need to make sure that each class has a balance proportion for each class?
-  - [ ] No, it is not balance.  
-  - [ ] Yes, it is balance, but it is not necessary to balanced between the class proportion.  
-  - [ ] Yes, it is balance. Distribution of each class need to be balance to prevent any missclassified observation.  
-  - [ ] Yes, it is balance. Distribution of each class need to be balance so that the model can learn the characteristics for each class equally.  
+```
+# your code here
 
+```
+
+2. Based on proportion of `train` and `test` above, is the distribution of each class is a balance? Why the distribution of each class must balance?
+  - [ ] No, it is not.
+  - [ ] Yes, it is. Distribution of each class does not need to be balance. 
+  - [ ] No, it is not. Distribution of each class needs to be balanced to make the model not miss classify each class. 
+  - [ ] Yes, it is balance. Distribution of each class needs to be balanced to make model learn both in each class as well. 
 
 # 3.1 Logistic Regression Model Fitting
 
-After splitting our dataset in train and test set, let's try to model our `left` variable using all of the predictor variables to build a logistic regression. Please store your model in `model_logistic`. Remember, we've not using `turnover` dataset any longer and we will be using `train` dataset instead.
+We have a `train` and `test` dataset. Let's try to model the `left` variable with all of the predictor variables using the logistic regression model. Please store your model in `model_logistic`. Remember, we have not using `turnover` dataset any longer, but using `train` dataset.
 
 ```
 # model_logistic <- 
 
 ```
 
-Based on the `model_logictic` you have made above, make take a look at the summary of your model.
+Based on the `model_logictic` you have made above, make the summary of the model.
 
 ```
 # your code here
@@ -92,14 +97,18 @@ Based on the model summary above, try to answer the following question.
 
 # 3.2 K-Nearest Neighbor Model Fitting
 
-In k-Nearest Neighbor algorithm, we need to perform one more step of data preprocessing. For both our `train` and `test` set, drop the variable from each column except our `left` variable, then scale the numeric column and store it under `train_knn` and `test_knn`. 
+# 3.2 Model Fitting K-Nearest Neighbor Section
+
+## Model Fitting Tutorial
+
+In k-Nearest Neighbor algorithm, we need more data pre-process before make a modeling, because in k-Nearest Neigbor we must set the right **'k'** so our model can predict the target variable well. Use the `train` dataset, drop the factor variables except the target variable `left` then scale the numeric column and store it in `train_knn`. Use the `test` dataset and drop the factor variables except the target variable `left` then scale the numeric column using attribute center and scale from `train_knn` data and store it in`test_knn`. 
 
 ```
 # your code here
 
 ```
 
-After we have done performing data scaling, we will need to find the right K to use for our K-NN model. To get the right K, please use the number of row from our `train_knn` datasets. If you've got decimal number, don't forget to round it and make sure you end up with an odd number to prevent voting tie break. 
+After we have done in additional pre-processing step, we move to build k-NN model. But, do not forget to find the right k first. To get the right k, please use the `train_knn` datasets information if needed. If you got decimal number, do not forget to round it for getting odd values. 
 
 ```
 # your code here
@@ -108,7 +117,7 @@ After we have done performing data scaling, we will need to find the right K to 
 
 ## K-Nearest Neighbor Quiz
 
-Using K value we've calculate in the section before, try to predict `test_knn` using `train_knn` dataset. 
+Using k value we have calculate in the section before, try to modeling the `train_knn` data to make knn model. Store the model in `model_knn`. 
 
 ```
 # your code here
@@ -117,13 +126,13 @@ Using K value we've calculate in the section before, try to predict `test_knn` u
 
 The method to acquire K value, however, does not guarantee you to acquire the best result. There are some other way to try out different K values.
 
-4. What method we can use to first try and estimate an appropriate k?
-  - [ ] square root by number of row  
-  - [ ] number of row  
-  - [ ] use k = 1  
+4. What method we can use to choose an appropriate k?
+  - [ ] square root by number of row 
+  - [ ] number of row
+  - [ ] use k = 1
 
 
-If you've succeeded making the model, try to answer the following question.
+If you have succeeded in making the knn model, try to answer this question.
 
 ![](model.png)
 
@@ -142,7 +151,7 @@ Now let's get back to our `model_logistic`. In this section, try to predict `tes
 
 ```
 
-Now, given a threshold of 0.45, try to classify wether or not an employee can be predicted to resign.
+Using `pred_value`, we have got the probability of employee getting resign or not. Use threshold 0.45 to classify if the probability of employee getting resigns or not more than 0.45, make it 1, if it is not, make it 0. 
 
 ```
 # your code here
