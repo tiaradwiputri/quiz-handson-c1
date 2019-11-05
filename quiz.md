@@ -9,7 +9,7 @@ In this quiz, we will be using turnover of employee data (`turnover`). The data 
 
 ```
 
-As we can see on turnover data, this data consist of 10 variables and 14.999 row. Turnover dataset is a human resource data that shows historical data of employee characteristics that are resigned or not. This is more information about variable in the dataset:
+Turnover data is consist of 10 variables and 14.999 row. Turnover dataset is a human resource data that shows historical data of employee characteristics that are resigned or not. This is more information about variable in the dataset:
 
   - `satisfaction_level`: the level of employee satisfaction working in a company
   - `last_evaluation`: employee satisfaction level at the last evaluation
@@ -42,14 +42,16 @@ In this quiz, we will try to predict employee that given a chance to resign or n
 
 ## Data Pre-Process Tutorial
 
-After we've done in exploratory data, we move to pre-process step before build classification model using `turnover` dataset. Before we build the model, let's take a look the proportion of our class target in `left` column. 
+We will move to pre-process step before build classification model using `turnover` dataset. Let's take a look the proportion of our class target in `left` column before building the model. 
 
 ```
 # your code here
 
 ```
 
-Our target variable has a balance proportion between resign and not. So we don't need to do pre-process to make it balance either using upsampling or downsampling. So our next step is split `turnover` dataset to be train data and test data in order to make model fitting and model validation. Split `turnover` dataset for train data with the proportion of data is 80% and store it with `train` object and the last one store it with `test` object for our data testing. Use `set.seed()` with seed 100 and `sample()` to randomize `turnover` dataset before split it. 
+Our target variable has a balance proportion between resign and not. We do not need to do pre-process for make it balance either using upsampling or downsampling. Next step we will split `turnover` dataset for train data and test data in order to make model fitting and model validation. Split `turnover` dataset for train data with the proportion of data is 80% and store it with `train` object and the rest of it for `test` object to do model validation. Use `set.seed()` with seed 100 and `sample()` to randomize `turnover` dataset before. 
+
+> **Notes:** Make sure your R version is 3.6
 
 ```
 # RNGkind(sample.kind="Rounding")
@@ -60,32 +62,32 @@ Our target variable has a balance proportion between resign and not. So we don't
 
 ## Data Pre-Process Quiz
 
-After splitting dataset, so let's take a look distribution of proportion in `train` and `test` data, and try to answer the question below. Please rounding the proportion using two decimal number.
+Let's take a look distribution of proportion in `train` and `test` data, and try to answer the question below. Please rounding the proportion using two decimal number.
 
 ```
 # your code here
 
 ```
 
-2. Based on proportion of `train` and `test`, is the distribution of each class is balance? Why the distribution of each class must balance?
-  - [ ] No, it is not balance.
-  - [ ] Yes, it is balance. Distribution of each class doesn't need to be balance. 
-  - [ ] No, it is not balance. Distribution of each class need to be balance to make model not miss classify each class. 
-  - [ ] Yes, it is balance. Distribution of each class need to be balance to make model learn both in each class as well. 
+1. Based on proportion of `train` and `test` above, is the distribution of each class is a balance? Why the distribution of each class must balance?
+  - [ ] No, it is not.
+  - [ ] Yes, it is. Distribution of each class does not need to be balance. 
+  - [ ] No, it is not. Distribution of each class needs to be balanced to make the model not miss classify each class. 
+  - [ ] Yes, it is balance. Distribution of each class needs to be balanced to make model learn both in each class as well. 
 
 
 # 3.1 Model Fitting Logistic Regression Section
 
 ## Model Fitting Tutorial
 
-After cross validation section, we've made `train` and `test` dataset. Let's try to modeling the `left` variable using all of predictor variable using logistic regression model. Please store your model in `model_logistic`. Remember, we've not using `turnover` dataset any longer, but we'll try to make those model using `train` dataset.
+We have a `train` and `test` dataset. Let's try to model the `left` variable with all of the predictor variables using the logistic regression model. Please store your model in `model_logistic`. Remember, we have not using `turnover` dataset any longer, but using `train` dataset.
 
 ```
 # model_logistic <- 
 
 ```
 
-Based on the `model_logictic` you've made above, make the summary of the model.
+Based on the `model_logictic` you have made above, make the summary of the model.
 
 ```
 # your code here
@@ -100,24 +102,24 @@ On the summary model above, try to interpret one of predictor variable. Let say 
 # your code here
 ```
 
-3. What can we interpret based on the output above?
-  - [ ] Probability if employee has work accident being not resign is 0.23.
-  - [ ] Odds ratio employee has work accident being not resign is about 0.23 more likely than employee not has work accident.
-  - [ ] Odds ratio employee has work accident being not resign is about 1.44 less likely than employee not has work accident.
+1. What can we interpret based on the output above?
+  - [ ] Probability if an employee has a work accident being not resigned is 0.23.
+  - [ ] Odds ratio employee has work accident being not resigned is about 0.23 more likely than an employee not has a work accident.
+  - [ ] Odds ratio employee has work accident being resigned is about 1.44 less likely than an employee not has a work accident.
 
 
 # 3.2 Model Fitting K-Nearest Neighbor Section
 
 ## Model Fitting Tutorial
 
-In k-Nearest Neighbor algorithm, we need more data pre-process before make a modeling. Because in k-Nearest Neigbor we must set the right **'k'** so our model can predict the target variable well. Using `train` and `test` dataset, drop the factor variable exept the target variable `left` then scale the numeric column and store it in `train_knn` and `test_knn`. 
+In k-Nearest Neighbor algorithm, we need more data pre-process before make a modeling, because in k-Nearest Neigbor we must set the right **'k'** so our model can predict the target variable well. Use the `train` dataset, drop the factor variables except the target variable `left` then scale the numeric column and store it in `train_knn`. Use the `test` dataset and drop the factor variables except the target variable `left` then scale the numeric column using attribute center and scale from `train_knn` data and store it in`test_knn`. 
 
 ```
 # your code here
 
 ```
 
-After we have done in additional pre-processing step, we move to build k-NN model. But, don't forget to find the right k first. To get the right k, please use the `train_knn` datasets information if needed. If you've got decimal number, don't forget to round it for getting odd values. 
+After we have done in additional pre-processing step, we move to build k-NN model. But, do not forget to find the right k first. To get the right k, please use the `train_knn` datasets information if needed. If you got decimal number, do not forget to round it for getting odd values. 
 
 ```
 # your code here
@@ -126,7 +128,7 @@ After we have done in additional pre-processing step, we move to build k-NN mode
 
 ## Model Fitting Quiz
 
-Using k value we've calculate in the section before, try to modeling the `train_knn` data to make knn model. Store the model in `model_knn`. 
+Using k value we have calculate in the section before, try to modeling the `train_knn` data to make knn model. Store the model in `model_knn`. 
 
 ```
 # your code here
@@ -135,18 +137,17 @@ Using k value we've calculate in the section before, try to modeling the `train_
 
 Based on the k value we have acquired, try to answer the following question.
 
-4. What method we can use to choose an appropriate k?
+1. What method we can use to choose an appropriate k?
   - [ ] square root by number of row 
-  - [ ] elbow method
   - [ ] number of row
   - [ ] use k = 1
 
 
-If you've success for making the knn model, try to answer this question.
+If you have succeeded in making the knn model, try to answer this question.
 
 ![](model.png)
 
-5. Fill the missing code here based on the picture above, and choose the right code for build knn model!
+1. Fill the missing code here based on the picture above, and choose the right code for build knn model!
   - [ ] model_knn <- knn(train = train_knn, test = test_knn[,-8], cl = train_knn[,-8], k = 75)
   - [ ] model_knn <- knn(train = train_knn[,8], test = test_knn[,-8], cl = train_knn[,8], k = 75)
   - [ ] model_knn <- knn(train = train_knn[,-8], test = test_knn[,-8], cl = train_knn[,8], k = 75)
@@ -163,7 +164,7 @@ Based on the logistic regression model that we've made and store it as `model_lo
 
 ```
 
-Using `pred_value`, we've got the probability employee getting resign or not. Use threshold 0.45 to classify if the probability of employee getting resign or not more than 0.45, make it 1, if its not, make it 0. 
+Using `pred_value`, we have got the probability of employee getting resign or not. Use threshold 0.45 to classify if the probability of employee getting resigns or not more than 0.45, make it 1, if it is not, make it 0. 
 
 ```
 # your code here
@@ -184,7 +185,7 @@ Based on the prediction value above, try to answer this question.
 
 ## Model Evaluation Tutorial
 
-We've learn to make predictive model and try to predict value using `test` in logistic regression model and `test_knn` in k-nearest neighbor model. Last step we must done is checking our model performance in predict the unseen data. In this step, try to make the confusion matrix of model performance in logistic regression model based on `test` data and `pred_value`. Use the positive value is "1".
+We have learn to make predictive model and try to predict value using `test` in logistic regression model and `test_knn` in k-nearest neighbor model. The last step we must do is checking our model performance to predict the unseen data. In this step, try to make the confusion matrix of model performance in the logistic regression model based on `test` data and `pred_value`. Use the positive value is "1".
 
 ```
 # your code here
@@ -200,9 +201,9 @@ Make the same confusion matrix but using `model_knn` using `test_knn` data. Use 
 
 ### Model Evaluation Quiz
 
-Let's say that we're Human Resource (HR) that used this machine learning technique to predict employee resign or not. As HR, we want to know which employee that has high potential to resign in order to save our cost to find another recruiter. So we want to get a high amount of employee  that has potential to resign based on the historical data. By this metric that we used, we can take precautions so that the employee does not resign.
+Let's say that we are as an Human Resource (HR) that used this machine learning technique to predict employee resign or not. As HR, we want to know which employee has high potential to resign in order to save our cost to find another recruiter. So we want to get a high amount of employee that has the potential to resign based on the historical data. By this metric that we used, we can take precautions so that the employee does not resign.
 
-7. What is the right metric we used to check performance of our model based on the condition above?"
+7. What is the right metric we used to check the performance of our model based on the condition above?"
   - [ ] Recall
   - [ ] Specificity
   - [ ] Accuracy
@@ -211,30 +212,10 @@ Let's say that we're Human Resource (HR) that used this machine learning techniq
 8. How much the value based on the metric model performance we used in the logistic regression model?"
   - [ ] 0.7754
   - [ ] 0.8564
-  - [ ] 0.9033
+  - [ ] 0.8809
   - [ ] 0.7407
 
-# 6 Conclusion Section
-
-## Conclusion Tutorial
-
-In the section before, we've try to make model and predict using unseen data. We've try to evaluate our model both of logistic regression and k-nn. Now we want to evaluate which model is giving the best performance to predict `left`. Let's we print both of confusion matrix in logistic model and k-nn model.
-
-```
-# your code here
-
-```
-
-```
-# your code here
-
-```
-
-## Conclusion Quiz
-
-Based on metric model performance that we used before, try to answer this question. 
-
-9. Which model we want to use as HR if we want by our model we can learn and make decision more clearly?
+9. Which model we want to use as an HR if we want by our model we can learn and make a decision more clearly?
   - [ ] K-nn, because the metric performance is bigger than logistic regression, so we can use the model to predict again. 
   - [ ] Logistic regression, because the metric performance not too worse than k-nn.
   - [ ] Logistic regression, because we can interpret each predictor variable, so we can give decision clearly.
