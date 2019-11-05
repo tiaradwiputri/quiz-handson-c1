@@ -29,7 +29,6 @@ In this quiz, we will try to predict wether or not the employee has resignation 
 
 ## Data Exploration Quiz
 
-
 1. Based on aggregation data you have created, which division has the highest average of monthly hours with high probability of resigning?
   - [ ] IT division
   - [ ] Technical division
@@ -45,8 +44,9 @@ After we are done with data exploratory, we will go ahead and perform pre-proces
 
 ```
 
-Our target variable has a balance proportion between both classes. So our next step is to split the dataset into a train and test set in order to perform a model validation. Split `turnover` dataset into a train data using 80% of the data and store it under `train` object. Use the rest 20% of the data as the test set and store it under `test` object.
+Our target variable has a balance proportion between both classes. So our next step is to split the dataset into a train and test set in order to perform a model validation. Split `turnover` dataset into a train data using 80% of the data and store it under `train` object. Use the rest 20% of the data as the test set and store it under `test` object. Use `set.seed()` with seed 100 and `sample()` to randomize `turnover` dataset before. 
 
+> **Notes:** Make sure your R version is 3.6, if your R version not 3.6, use `RNGkind(sample.kind="Rounding")`
 ```
 # RNGkind(sample.kind="Rounding")
 # set.seed(100)
@@ -85,7 +85,7 @@ Based on the `model_logictic` you have made above, make take a look at the summa
 
 Based on the model summary above, try to answer the following question.
 
-3. What can be interpreted from `work_accident` variable based on the output above?
+3. What can be interpreted from `Work_accident` variable based on the output above?
   - [ ] Probability of an employee that had a work accident not resigning is 0.23.  
   - [ ] Employee that had a work accident is about 0.23 more likely to resign than the employee that has not.  
   - [ ] Employee that had a work accident is about 1.44 less likely to resign than the employee that has not.  
@@ -161,7 +161,7 @@ Based on the prediction value above, try to answer the following question.
 
 # 5 Model Evaluation
 
-In the previous sections, we have performed a prediction using both Logistic Regression and K-NN algorithm. However, we need to validate wether or not our model did a good job in predicting unseen data. In this step, try to make the confusion matrix of model performance in logistic regression model based on `test` data and `pred_value`.
+In the previous sections, we have performed a prediction using both Logistic Regression and K-NN algorithm. However, we need to validate wether or not our model did a good job in predicting unseen data. In this step, try to make the confusion matrix of model performance in logistic regression model based on `test` data and `pred_value` and use the positive class is "1".
 
 ```
 # your code here
@@ -190,4 +190,8 @@ Let's say that we worked as an HR staff in a company and is utilizing this model
   - [ ] K-Nearest Neighbor  
   - [ ] Both has more or less similar performance  
   
-
+9.  Which model we want to use as an HR if we want to make a decision more clearly?
+  - [ ] K-nn, because the model give higher performance than logistic regression
+  - [ ] Logistic regression, because the model less similar performance with k-nn
+  - [ ] Logistic regression, because we can interpret each predictor variable
+  - [ ] K-nn, because this model more precisious in predict each class target
