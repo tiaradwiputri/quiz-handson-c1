@@ -95,8 +95,6 @@ Based on the model summary above, try to answer the following question.
 
 # 3.2 K-Nearest Neighbor Model Fitting
 
-# 3.2 Model Fitting K-Nearest Neighbor Section
-
 ## Model Fitting Tutorial
 
 In k-Nearest Neighbor algorithm, we need to perform one more step of data preprocessing. For both our `train` and `test` set, drop the categorical variable from each column except our `left` variable, then scale the numeric column and store it under `train_knn` and `test_knn`.
