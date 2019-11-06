@@ -37,20 +37,18 @@ In this quiz, we will try to predict wether or not the employee has resignation 
 
 # 2 Data Pre-Processing
 
-We will move to pre-process step before build classification model using `turnover` dataset. Let's take a look the proportion of our class target in `left` column before building the model. 
-
+After we are done with data exploratory, we will go ahead and perform pre-processing steps before building the classification model. Before we build the model, let's take a look the proportion of our target variable in `left` column. 
 ```
 # your code here
 
 ```
 
-Our target variable has a balance proportion between both classes. So our next step is to split the dataset into a train and test set in order to perform a model validation. Split `turnover` dataset into a train data using 80% of the data and store it under `train` object. Use the rest 20% of the data as the test set and store it under `test` object. Use `set.seed()` with seed 100 and `sample()` to randomize `turnover` dataset before. 
+Our target variable has a balance proportion between both classes. So our next step is to split the dataset into a train and test set in order to perform a model validation. Split `turnover` dataset into a train data using 80% of the data and store it under `train` object. Use the rest 20% of the data as the test set and store it under `test` object.
 
-> **Notes:** Make sure your R version is 3.6 
+> **Notes:** Make sure your R version is 3.6 or above
 
 ```
-# RNGkind(sample.kind="Rounding")
-# set.seed(100)
+set.seed(100)
 # your code here
 
 ```
@@ -64,22 +62,22 @@ Let's take a look distribution of proportion in `train` and `test` data, and try
 
 ```
 
-2. Based on proportion of `train` and `test` above, is the distribution of each class is a balance? Why the distribution of each class must balance?
-  - [ ] No, it is not.
-  - [ ] Yes, it is. Distribution of each class does not need to be balance. 
-  - [ ] No, it is not. Distribution of each class needs to be balanced to make the model not miss classify each class. 
-  - [ ] Yes, it is balance. Distribution of each class needs to be balanced to make model learn both in each class as well. 
+2. Based on proportion of `train` and `test`, is the distribution of each class can be considered as balance? Why do we need to make sure that each class has a balance proportion for each class?
+  - [ ] No, it is not balance.  
+  - [ ] Yes, it is balance, but it is not necessary to balanced between the class proportion.  
+  - [ ] No, it is not. Distribution of each class need to be balance to prevent any missclassified observation.  
+  - [ ] Yes, it is balance. Distribution of each class need to be balance so that the model can learn the characteristics for each class equally.  
 
 # 3.1 Logistic Regression Model Fitting
 
-We have a `train` and `test` dataset. Let's try to model the `left` variable with all of the predictor variables using the logistic regression model. Please store your model in `model_logistic`. Remember, we have not using `turnover` dataset any longer, but using `train` dataset.
+After splitting our dataset in train and test set, let's try to model our `left` variable using all of the predictor variables to build a logistic regression. Please store your model in `model_logistic`. Remember, we've not using `turnover` dataset any longer and we will be using `train` dataset instead.
 
 ```
 # model_logistic <- 
 
 ```
 
-Based on the `model_logictic` you have made above, make the summary of the model.
+Based on the `model_logictic` you have made above, make take a look at the summary of your model.
 
 ```
 # your code here
@@ -101,14 +99,14 @@ Based on the model summary above, try to answer the following question.
 
 ## Model Fitting Tutorial
 
-In k-Nearest Neighbor algorithm, we need more data pre-process before make a modeling, because in k-Nearest Neigbor we must set the right **'k'** so our model can predict the target variable well. Use the `train` dataset, drop the factor variables except the target variable `left` then scale the numeric column and store it in `train_knn`. Use the `test` dataset and drop the factor variables except the target variable `left` then scale the numeric column using attribute center and scale from `train_knn` data and store it in`test_knn`. 
+In k-Nearest Neighbor algorithm, we need to perform one more step of data preprocessing. For both our `train` and `test` set, drop the categorical variable from each column except our `left` variable, then scale the numeric column and store it under `train_knn` and `test_knn`.
 
 ```
 # your code here
 
 ```
 
-After we have done in additional pre-processing step, we move to build k-NN model. But, do not forget to find the right k first. To get the right k, please use the `train_knn` datasets information if needed. If you got decimal number, do not forget to round it for getting odd values. 
+After we have done performing data scaling, we will need to find the right K to use for our K-NN model. To get the right K, please use the number of row from our `train_knn` datasets. If you've got decimal number, don't forget to round it and make sure you end up with an odd number to prevent voting tie break. 
 
 ```
 # your code here
@@ -117,13 +115,6 @@ After we have done in additional pre-processing step, we move to build k-NN mode
 
 ## K-Nearest Neighbor Quiz
 
-Using k value we have calculate in the section before, try to modeling the `train_knn` data to make knn model. Store the model in `model_knn`. 
-
-```
-# your code here
-
-```
-
 The method to acquire K value, however, does not guarantee you to acquire the best result. There are some other way to try out different K values.
 
 4. What method we can use to choose an appropriate k?
@@ -131,8 +122,14 @@ The method to acquire K value, however, does not guarantee you to acquire the be
   - [ ] number of row
   - [ ] use k = 1
 
+Using K value we've calculate in the section before, try to predict `test_knn` using `train_knn` dataset. 
 
-If you have succeeded in making the knn model, try to answer this question.
+```
+# your code here
+
+```
+
+Next, take a look at the following syntax:
 
 ![](model.png)
 
@@ -151,7 +148,7 @@ Now let's get back to our `model_logistic`. In this section, try to predict `tes
 
 ```
 
-Using `pred_value`, we have got the probability of employee getting resign or not. Use threshold 0.45 to classify if the probability of employee getting resigns or not more than 0.45, make it 1, if it is not, make it 0. 
+Now, given a threshold of 0.45, try to classify wether or not an employee can be predicted to resign.
 
 ```
 # your code here
@@ -177,7 +174,7 @@ In the previous sections, we have performed a prediction using both Logistic Reg
 
 ```
 
-Make the same confusion matrix but using `model_knn`.
+Make the same confusion matrix but using `model_knn` prediction result.
 
 ```
 # your code here
@@ -186,9 +183,9 @@ Make the same confusion matrix but using `model_knn`.
 
 ### Model Evaluation Quiz
 
-Let's say that we worked as an HR staff in a company and is utilizing this model to predict the probability of an employee resigning. As an HR, we would want to know which employee has a high potential of resigning so that we are able to take a precaution approach as soon as possible. Now try to answer the following questions.
+Let's say that we are working as an HR staff in a company and is utilizing this model to predict the probability of an employee resigning. As an HR, we would want to know which employee has a high potential of resigning so that we are able to take a precaution approach as soon as possible. Now try to answer the following questions.
 
-7. Which one is a good metrics for us to evaluate numbers ofresigning employee that we are able to detect early?
+7. Which one is a good metrics for us to evaluate the numbers of resigning employee that we are able to detect?
   - [ ] Recall  
   - [ ] Specificity  
   - [ ] Accuracy  
@@ -199,8 +196,8 @@ Let's say that we worked as an HR staff in a company and is utilizing this model
   - [ ] K-Nearest Neighbor  
   - [ ] Both has more or less similar performance  
   
-9.  Which model we want to use as an HR if we want to make a decision more clearly?
-  - [ ] K-nn, because the model give higher performance than logistic regression
-  - [ ] Logistic regression, because the model less similar performance with k-nn
-  - [ ] Logistic regression, because we can interpret each predictor variable
-  - [ ] K-nn, because this model more precisious in predict each class target
+9.  Now recall how we have learned the advantage of each model. Which one are more suitable to use if we aimed for model interpretability?
+  - [ ] K-nn, because it tends to have a higher performance than logistic regression
+  - [ ] Logistic regression, because it has a lower performance than K-nn
+  - [ ] Logistic regression, because each coefficient can be transformed into odds ratio
+  - [ ] K-nn, because it results in a better precision score for the positive class
