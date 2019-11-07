@@ -17,7 +17,7 @@ Turnover data is consist of 10 variables and 14.999 row. Turnover dataset is a h
   - `work_accident`: presence or absence of work accident, 0 = none, 1 = there
   - `left`: employee history data resigned, 0 = no, 1 = yes
   - `promotion_last_5years`: ever got a promotion in the last 5 years, 0 = no, 1 = yes
-  - `sales`: name of department or division
+  - `division`: name of department or division
   - `salary`: income level, divided into low, medium and high
   
 In this quiz, we will try to predict wether or not the employee has resignation tendency using `left` column as our target variable. Let's take a look mean of `average_monthly_hours` of each division and history of employee resign.
@@ -94,8 +94,6 @@ Based on the model summary above, try to answer the following question.
   - [ ] Employee that had a work accident is about 1.44 less likely to resign than the employee that has not.  
 
 # 3.2 K-Nearest Neighbor Model Fitting
-
-## Model Fitting Tutorial
 
 In k-Nearest Neighbor algorithm, we need to perform one more step of data preprocessing. For both our `train` and `test` set, drop the categorical variable from each column except our `left` variable, then scale the numeric column and store it under `train_knn` and `test_knn`.
 
