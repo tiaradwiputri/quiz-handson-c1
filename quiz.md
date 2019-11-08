@@ -7,7 +7,7 @@ In this quiz, we will be using turnover of employee data (`turnover`). The data 
 
 ```
 
-Turnover data is consist of 10 variables and 14.999 row. Turnover dataset is a human resource data that shows historical data of employee characteristics that are resigned or not. This is more information about variable in the dataset:
+Turnover data is consist of 10 variables and 7.142 row. Turnover dataset is a human resource data that shows historical data of employee characteristics that are resigned or not. This is more information about variable in the dataset:
 
   - `satisfaction_level`: the level of employee satisfaction working in a company
   - `last_evaluation`: employee satisfaction level at the last evaluation
@@ -20,7 +20,7 @@ Turnover data is consist of 10 variables and 14.999 row. Turnover dataset is a h
   - `division`: name of department or division
   - `salary`: income level, divided into low, medium and high
   
-In this quiz, we will try to predict wether or not the employee has resignation tendency using `left` column as our target variable. Let's take a look mean of `average_monthly_hours` of each division and history of employee resign.
+In this quiz, we will try to predict wether or not the employee has resignation tendency using `left` column as our target variable. Please change class of `Work_accident`, `left`, and`promotion_last_5years` column to be in factor class. Let's take a look mean of `average_monthly_hours` of each division and history of employee resign.
 
 ```
 # your code here
@@ -127,13 +127,16 @@ Using K value we've calculate in the section before, try to predict `test_knn` u
 
 Next, take a look at the following syntax:
 
-![](model.png)
+```
+library(class)
+model_knn <- knn(train = ______, test = test_knn[,-6], cl = _______, k = 75) 
+```
 
 5. Fill the missing code here based on the picture above, and choose the right code for build knn model!
-  - [ ] model_knn <- knn(train = train_knn, test = test_knn[,-8], cl = train_knn[,-8], k = 75)
-  - [ ] model_knn <- knn(train = train_knn[,8], test = test_knn[,-8], cl = train_knn[,8], k = 75)
-  - [ ] model_knn <- knn(train = train_knn[,-8], test = test_knn[,-8], cl = train_knn[,8], k = 75)
-  - [ ] model_knn <- knn(train = train_knn[,-8], test = test_knn[,-8], cl = train_knn[,-8], k = 75)
+  - [ ] model_knn <- knn(train = train_knn, test = test_knn[,-6], cl = train_knn[,-6], k = 75)
+  - [ ] model_knn <- knn(train = train_knn[,6], test = test_knn[,-6], cl = train_knn[,6], k = 75)
+  - [ ] model_knn <- knn(train = train_knn[,-6], test = test_knn[,-6], cl = train_knn[,6], k = 75)
+  - [ ] model_knn <- knn(train = train_knn[,6], test = test_knn[,-6], cl = train_knn[,-6], k = 75)
 
 # 4 Prediction
 
@@ -155,7 +158,7 @@ Now, given a threshold of 0.45, try to classify wether or not an employee can be
 
 Based on the prediction value above, try to answer the following question.
 
-6. How many prediction does our model generate for each class?
+6. How many prediction does our model_logistic generate for each class?
   - [ ] class 0 = 714, class 1 = 715
   - [ ] class 0 = 524, class 1 = 905
   - [ ] class 0 = 592, class 1 = 837
