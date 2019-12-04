@@ -63,7 +63,7 @@ Let's take a look distribution of proportion in `train` and `test` data, and try
 ```
 
 2. Based on proportion of `train` and `test`, is the distribution of each class can be considered as balance? Why do we need to make sure that each class has a balance proportion for each class?
-  - [ ] No, it is not balance.  
+  - [ ] No, it is not balance.
   - [ ] Yes, it is balance, but it is not necessary to balanced between the class proportion.  
   - [ ] No, it is not. Distribution of each class need to be balance to prevent any missclassified observation.  
   - [ ] Yes, it is balance. Distribution of each class need to be balance so that the model can learn the characteristics for each class equally.  
