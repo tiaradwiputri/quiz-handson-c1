@@ -161,22 +161,20 @@ Hint: If you have got a decimal number, do not forget to round it and make sure 
 
 Using K value, we have calculated in the section before, try to predict `test_y` using `train_x` dan `train_y` dataset. To make the k-nn model, please use the `knn()` function and store the model under the `model_knn` object.
 
-```
-model_knn <- knn()
-```
-
 Next, please look up at the following code:
 
 ```
 library(class)
-model_knn <- knn(train = ______, test = test_knn[,-6], cl = _______, k = 75) 
+model_knn <- knn(train = ______, test = ________, cl = _______, k = _____) 
 ```
 
+___
 5. Fill the missing code here based on the picture above and choose the right code for building the knn model!
-  - [ ] model_knn <- knn(train = train_knn, test = test_knn[,-6], cl = train_knn[,-6], k = 75)
-  - [ ] model_knn <- knn(train = train_knn[,6], test = test_knn[,-6], cl = train_knn[,6], k = 75)
-  - [ ] model_knn <- knn(train = train_knn[,-6], test = test_knn[,-6], cl = train_knn[,6], k = 75)
-  - [ ] model_knn <- knn(train = train_knn[,6], test = test_knn[,-6], cl = train_knn[,-6], k = 75)
+  - [ ] model_knn <- knn(train = train_y, test = test_y, cl = test_y, k = 75)
+  - [ ] model_knn <- knn(train = train_x, test = test_y, cl = test_x, k = 89)
+  - [ ] model_knn <- knn(train = train_x, test = test_x, cl = train_y, k = 75)
+  - [ ] model_knn <- knn(train = train_x, test = train_y, cl = train_x, k = 89)
+___
 
 # Prediction
 
