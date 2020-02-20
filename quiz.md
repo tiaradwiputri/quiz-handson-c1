@@ -1,6 +1,6 @@
 # Classification 1 Quiz
 
-This quiz is part of Algoritma Academy assessment process. Congratulations on completing the first Classification in Machine Learning course! We will conduct an assessment quiz to test practical classification 1 model techniques you have learned on the course. The quiz is expected to be taken in the classroom, please contact our team of instructors if you missed the chance to take it in class.
+This quiz is part of Algoritma Academy assessment process. Congratulations on completing the first Classification in Machine Learning course! We will conduct an assessment quiz to test practical classification model techniques you have learned on the course. The quiz is expected to be taken in the classroom, please contact our team of instructors if you missed the chance to take it in class.
 
 To complete this assignment, you are required to build your classification model to classify the characteristics of employees who have resigned and have not. Use Logistic Regression and k-Nearest Neighbor algorithms by following these steps:
 
@@ -227,14 +227,12 @@ ___
   - [ ] Specificity  
   - [ ] Accuracy  
   - [ ] Precision  
-___
 
 ___
 8. Using the metrics of your answer in the previous question, which of the two models has a better performance in detecting resigning employees?
   - [ ] Logistic Regression
   - [ ] K-Nearest Neighbor  
   - [ ] Both has more or less similar performance  
-___
 
 ___
 9.  Now, recall what we have learned the advantage of each model. Which one is more suitable to use if we aimed for model interpretability?
