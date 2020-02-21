@@ -20,10 +20,10 @@ Turnover data consists of 10 variables and 7.142 rows. This dataset is a human r
   - `average_monthly_hours`: average hours worked per month
   - `time_spend_company`: length of time in the company (years)
   - `work_accident`: presence or absence of work accident, 0 = none, 1 = there
-  - `left`: employee history data resigned, 0 = no, 1 = yes
   - `promotion_last_5years`: ever got a promotion in the last 5 years, 0 = no, 1 = yes
   - `division`: name of department or division
   - `salary`: income level, divided into low, medium and high
+  - `left`: employee history data resigned, 0 = no, 1 = yes
   
 In this quiz, we will try to predict whether or not the employee has a resignation tendency using the `left` column as our target variable. Please change the class of `Work_accident`, `left`, and `promotion_last_5years` column to be in factor class as it should be.
 
@@ -54,9 +54,10 @@ After conducting the data exploratory, we will go ahead and perform preprocessin
 
 It seems like our target variable has a balance proportion between both classes. Before we build the model, we should split the dataset into train and test data in order to perform model validation. Split `turnover` dataset into 80% train and 20% test proportion using `sample()` function and use `set.seed()` with the seed 100. Store it as a `train` and `test` object.
 
-> **Notes:** Make sure your R version is 3.6 or above
+> **Notes:** Make sure you use `RNGkind()` before splitting
 
 ```
+RNGkind(sample.kind = "Rounding")
 set.seed(100)
 # your code here
 
@@ -92,10 +93,10 @@ Based on the `model_logictic` you have made above, take a look at the summary of
 ```
 ___
 3. Logistic regression is one of interpretable model. We can explain how likely each variable are predicted to the class we observed. Based on the model summary above, what can be interpreted from the `Work_accident` coeficient?
-  - [ ] The probability of an employee that had a work accident not resigning is 0.23.
-  - [ ] Employee who had a work accident is about 0.23 more likely to resign than the employee who has not.  
-  - [ ] Employee who had a work accident is about 1.44 less likely to resign than the employee who has not. 
-___ 
+  - [ ] The probability of an employee that had a work accident not resigning is 0.21.
+  - [ ] Employee who had a work accident is about 0.21 more likely to resign than the employee who has not.  
+  - [ ] Employee who had a work accident is about 1.57 less likely to resign than the employee who has not.  
+___
 
 # K-Nearest Neighbor Model Fitting
 
@@ -117,12 +118,12 @@ test_y <-
 
 Recall that the distance calculation for kNN is heavily dependent upon the measurement scale of the input features. If any variable that have high different range of value could potentially cause problems for our classifier, so let's apply normalization to rescale the features to a standard range of values.
 
-To normalize the features in `train_x`, please using `scale()` function. Meanwhile, in testing set data, please normalize each features using the attribute *center* and *scale* of `train_x` set data. 
+To normalize the features in `train_x`, please using `scale()` function. Meanwhile, in testing set data, please normalize each features using the attribute *center* and *scale* of `train_x` set data.
 
-Please look up to the following code as an example to normalize `test_x` data: 
+Please look up to the following code as an example to normalize `test_x` data:
 
 ```
-scale(data_test, center = attr(data_train, "scaled:center"), 
+scale(data_test, center = attr(data_train, "scaled:center"),
 scale = attr(data_train, "scaled: scale"))
 ```
 
@@ -137,7 +138,6 @@ train_x <- scale()
 # scale test_x data
 test_x <- scale()
 ```
-
 
 After we have done performing data normalizing, we need to find the right **K** to use for our K-NN model. In practice, choosing k depends on the difficulty of the concept to be learned and the
 number of records in the training set data.
@@ -165,7 +165,7 @@ Next, please look up at the following code:
 
 ```
 library(class)
-model_knn <- knn(train = ______, test = ________, cl = _______, k = _____) 
+model_knn <- knn(train = ______, test = ________, cl = _______, k = _____)
 ```
 
 ___
@@ -197,7 +197,7 @@ ___
 6. In the prescriptive analytics stage, the prediction results from the model will be considered for business decision making. So, please take your time to check the prediction results. How many predictions do our `model_logistic` generate for each class?
   - [ ] class 0 = 714, class 1 = 715
   - [ ] class 0 = 524, class 1 = 905
-  - [ ] class 0 = 592, class 1 = 837
+  - [ ] class 0 = 590, class 1 = 839
  ___ 
 
 # Model Evaluation
@@ -215,7 +215,6 @@ Make the same confusion matrix for `model_knn` prediction result of `test_y`.
 ```
 # your code here
 ```
-
 
 Let's say that we are working as an HR staff in a company and are utilizing this model to predict the probability of an employee resigning. As an HR, we would want to know which employee has a high potential of resigning so that we can take a precautionary approach as soon as possible. Now try to answer the following questions.
 
