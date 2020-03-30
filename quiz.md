@@ -29,12 +29,14 @@ In this quiz, we will try to predict whether or not the employee has a resignati
 
 ```
 # your code here
+
 ```
 
-For example, as HR, we are instructed to investigate the division that has a long history of an employee resigning based on average monthly hours. Let's do some aggregation of `average_monthly_hours` for each division. Because you only focused at the employee who left, you should filter the historical data with the condition needed. You can use `filter` then `group_by()` function by `division` variable and `summarise()` the mean of `average_monthly_hours` variable and arrange it by the highest of the mean value of `average_monthly_hours` using `arrange()` function.
+For example, as HR, we are instructed to investigate the division that has a long history of an employee resigning based on average monthly hours. Let's do some aggregation of `average_monthly_hours` for each division. Try to aggregate the average of `average_monthly_hours` from all employees that have left the company and answer the following question.
 
 ```
 # your code here
+
 ```
 ___
 1. Based on the aggregation data that you have analyzed, which division has the highest average of monthly hours?
@@ -46,15 +48,9 @@ ___
 
 # Data Preprocessing
 
-After conducting the data exploratory, we will go ahead and perform preprocessing steps before building the classification model. Before we build the model, let us take a look at the proportion of our target variable in the `left` column using `prop.table(table(data))` function.
+After conducting the data exploratory, we will go ahead and perform preprocessing steps before building the classification model. Before we build the model, let us perform dataset splitting for cross validation process. For future reference, please store it as `train` and `test` object.
 
-```
-# your code here
-```
-
-It seems like our target variable has a balance proportion between both classes. Before we build the model, we should split the dataset into train and test data in order to perform model validation. Split `turnover` dataset into 80% train and 20% test proportion using `sample()` function and use `set.seed()` with the seed 100. Store it as a `train` and `test` object.
-
-> **Notes:** Make sure you use `RNGkind()` before splitting
+> **Quiz notes:** Make sure you use `RNGkind()` before splitting to ensure same random seed among different R versions
 
 ```
 RNGkind(sample.kind = "Rounding")
@@ -63,27 +59,21 @@ set.seed(100)
 
 ```
 
-Let's take a look distribution of proportion in `train` and `test` data using `prop.table(table(data))` function to make sure in train and test data has balance or not distribution of each class target. Please round the proportion using two decimal numbers using the `round()` function.
-
-```
-# your code here
-
-```
-
+Now take a look at the proportion of our target variable for both the original dataset, `train` and `test`. Make sure `train` and `test` dataset are distributed with a similar target class proportion.
 ___
-2. Based on the proportions of `train` and `test`, can the distribution of each class be considered balanced? Why do we need to ensure that each class has a balanced proportion especially in the training data set?
-  - [ ] No, it is not.
-  - [ ] Yes, it is, but it is not necessary to balance the class proportion.  
-  - [ ] No, it is not. The distribution of each class needs to be balanced to prevent any misclassified observation.  
-  - [ ] Yes, it is. The distribution of each class in training set data needs to be balanced so when doing model fitting, the algorithm can learn the characteristics for each class equally.
+2. Based on the proportions of `train` and `test`, is the distribution of the target class proportion is similar and can be considered as balanced?
+  - [ ] The `train` and `test` is similar but not balanced
+  - [ ] The `train` and `test` is not similar but not balanced
+  - [ ] The `train` and `test` is similar and balanced
+  - [ ] The `train` and `test` is not similar and not balanced
 ___
 
 # Logistic Regression Model Fitting
 
-After we have split our dataset in train and test set, let's try to model our `left` variable using all of the predictor variables to build a logistic regression. Please use the `glm(formula, data, family = "binomial")` to do that and store your model under the `model_logistic` object. Remember, we are not using `turnover` dataset any longer, and we will be using `train` dataset instead.
+After we have split our dataset in train and test set, let's try to model our `left` variable using all of the predictor variables to build a logistic regression. Remember, we are not using `turnover` dataset any longer, and we will be using `train` dataset instead.
 
 ```
-# model_logistic <- glm()
+model_logistic <- glm()
 ```
 
 Based on the `model_logictic` you have made above, take a look at the summary of your model using `summary()` function.
@@ -116,107 +106,65 @@ train_y <-
 test_y <-
 ```
 
-Recall that the distance calculation for kNN is heavily dependent upon the measurement scale of the input features. If any variable that have high different range of value could potentially cause problems for our classifier, so let's apply normalization to rescale the features to a standard range of values.
-
-To normalize the features in `train_x`, please using `scale()` function. Meanwhile, in testing set data, please normalize each features using the attribute *center* and *scale* of `train_x` set data.
-
-Please look up to the following code as an example to normalize `test_x` data:
-
-```
-scale(data_test, center = attr(data_train, "scaled:center"),
-scale = attr(data_train, "scaled: scale"))
-```
-
-Now it's your turn to try it in the code below:
+Recall that the distance calculation for kNN is heavily dependent upon the measurement scale of the input features. If any variable that have high different range of value could potentially cause problems for our classifier, so let's apply normalization to rescale the features to a standard range of values. Recall you can use the `scale()` function to perform a Z normalization for our variables.
 
 ```
 # your code here
 
 # scale train_x data
-train_x <- scale()
+train_x <- __
 
 # scale test_x data
-test_x <- scale()
+test_x <- __
 ```
 
-After we have done performing data normalizing, we need to find the right **K** to use for our K-NN model. In practice, choosing k depends on the difficulty of the concept to be learned and the
+Once you prepared the dataset, you will need to perform model tuning by specifying the **K** parameter for our KNN model. In practice, choosing k depends on the difficulty of the concept to be learned and the
 number of records in the training set data.
 
 ___
-4. The method for getting K value, does not guarantee you to get the best result. But, there is one common practice for determining the number of K. What method can we use to choose the number of k?
+4. The method for getting K value, does not guarantee you to get the best result. But, there is one common practice for determining the number of K. Which method is generally useful to start out picking the best K estimate?
   - [ ] square root by number of row 
   - [ ] number of row
-  - [ ] use k = 1
+  - [ ] 1
 ___
 
-After answering the questions above, please find the number of k in the following code:
-
-Hint: If you have got a decimal number, do not forget to round it and make sure you end up with an odd number to prevent voting tie break.
-
-```
-# your code here
-
-```
-
-
-Using K value, we have calculated in the section before, try to predict `test_y` using `train_x` dan `train_y` dataset. To make the k-nn model, please use the `knn()` function and store the model under the `model_knn` object.
-
-Next, please look up at the following code:
+Say we decided to use `k=75`, we then proceed to use model our data. Complete the following code to answer the following questions!
 
 ```
 library(class)
-model_knn <- knn(train = ______, test = ________, cl = _______, k = _____)
+model_knn <- knn(train = ______, test = ________, cl = _______, k = 75)
 ```
 
 ___
 5. Fill the missing code here based on the picture above and choose the right code for building the knn model!
   - [ ] model_knn <- knn(train = train_y, test = test_y, cl = test_y, k = 75)
-  - [ ] model_knn <- knn(train = train_x, test = test_y, cl = test_x, k = 89)
+  - [ ] model_knn <- knn(train = train_x, test = test_y, cl = test_x, k = 75)
   - [ ] model_knn <- knn(train = train_x, test = test_x, cl = train_y, k = 75)
-  - [ ] model_knn <- knn(train = train_x, test = train_y, cl = train_x, k = 89)
+  - [ ] model_knn <- knn(train = train_x, test = train_y, cl = train_x, k = 75)
 ___
 
-# Prediction
+# Model Benchmarking
 
-Now let's get back to our `model_logistic`. In this section, try to predict `test` data using `model_logistic` return the probability value using `predict()` function with `type = "response"` in the parameter function and store it under `prob_value` object.
-
-```
-prob_value <-
-```
-
-Because the prediction results in the logistic model are probabilities, we have to change them to categorical / class according to the target class we have. Now, given a threshold of 0.45, try to classify whether or not an employee can be predicted to resign. Please use `ifelse()` function and store the prediction result under the `pred_value` object.
+By now you should have two models: `model_knn` and `model_logistic`. You will now compare the performance for both model by predicting the `test` dataset prepared on the earlier section. Recall that the y modelled in logistic regression is the log of odd, make sure you store the probability value for each test set observations: 
 
 ```
-pred_value <-
+prob_value <- ___
 ```
-
-
-Based on the prediction value above, try to answer the following question.
-
 ___
-6. In the prescriptive analytics stage, the prediction results from the model will be considered for business decision making. So, please take your time to check the prediction results. How many predictions do our `model_logistic` generate for each class?
+6. Using the threshold of 0.5, how many predictions do our `model_logistic` predict for each class?
   - [ ] class 0 = 714, class 1 = 715
   - [ ] class 0 = 524, class 1 = 905
   - [ ] class 0 = 590, class 1 = 839
  ___ 
 
-# Model Evaluation
-
-In the previous sections, we have performed a prediction using both Logistic Regression and K-NN algorithm. However, we need to validate whether or not our model did an excellent job of predicting unseen data. In this step, try to make the confusion matrix of model performance in the logistic regression model based on `test` data and `pred_value` and use the positive class is "1".
-
-**Note:** do not forget to do the explicit coercion `as.factor()`.
+Since we have now acquired both the predicted result of `model_knn` and `model_logistic`, we can perform a cross validation using `test` set true label to assess wether or not both model did a good job in predicting unseen data. In this step, try to make the confusion matrix for both class and compare the models performance.
 
 ```
 # your code here
-```
-
-Make the same confusion matrix for `model_knn` prediction result of `test_y`.
 
 ```
-# your code here
-```
 
-Let's say that we are working as an HR staff in a company and are utilizing this model to predict the probability of an employee resigning. As an HR, we would want to know which employee has a high potential of resigning so that we can take a precautionary approach as soon as possible. Now try to answer the following questions.
+Let's say that we are working as an HR staff in a company and are utilizing this model to predict the probability of an employee resigning. Say we would want to know which employee has a high potential of resigning so that we can take a precautionary approach as soon as possible in order for us to mitigate and reduce the number of resigning employees as much as possible. Based on the stated case example try to answer the following questions!
 
 ___
 7. Which one is the right metric for us to evaluate the numbers of resigning employees that we can detect?
@@ -232,7 +180,7 @@ ___
   - [ ] Both has more or less similar performance  
 
 ___
-9.  Now, recall what we have learned the advantage of each model. Which one is more suitable to use if we aimed for model interpretability?
+9.  Which one is more suitable to use if we would like to gain insight on how each predictor variables is affecting the resign decisions for the resigned employees?
   - [ ] K-NN, because it tends to have a higher performance than logistic regression
   - [ ] Logistic regression, because it has a lower performance than K-nn
   - [ ] Logistic regression, because each coefficient can be transformed into an odds ratio
