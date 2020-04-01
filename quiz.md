@@ -76,7 +76,7 @@ After we have split our dataset in train and test set, let's try to model our `l
 model_logistic <- glm()
 ```
 
-Based on the `model_logictic` you have made above, take a look at the summary of your model using `summary()` function.
+Based on the `model_logistic` you have made above, take a look at the summary of your model using `summary()` function.
 
 ```
 # your code here
@@ -182,7 +182,7 @@ ___
 ___
 9.  Which one is more suitable to use if we would like to gain insight on how each predictor variables is affecting the resign decisions for the resigned employees?
   - [ ] K-NN, because it tends to have a higher performance than logistic regression
-  - [ ] Logistic regression, because it has a lower performance than K-nn
+  - [ ] Logistic regression, because it has a lower performance than K-NN
   - [ ] Logistic regression, because each coefficient can be transformed into an odds ratio
   - [ ] K-NN, because it results in a better precision score for the positive class
 ___
